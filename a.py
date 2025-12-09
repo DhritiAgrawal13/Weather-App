@@ -21,6 +21,8 @@ try:
     os.system('cls')
     c.weather_app()
     y=b.json()
+    with open('data.json','w') as fs:
+        fs.write(f"{b.json()}")
     print(f"name of the city:-{y['location']['name']}")
     print(f"Temperature in Celcius:- {y['current']['temp_c']}")
     print(f"Temperature in Fahrenheit:- {y['current']['temp_f']}")
@@ -30,18 +32,7 @@ except requests.exceptions.ConnectionError as e:
 except Exception as e:
     print(e)
         
-# def num():
-#     print(pyfiglet.figlet_format('Weather App System'))
-# num()
-# n=input("enter the name of the city which you want to know the temperature")
-# b=requests.get(f"http://api.weatherapi.com/v1/current.json?key=d2acf64e8b6e4288b58122130250712&q={n}&aqi=no")
-# print(b)
-# os.system('cls')
-# c=b.json()
-# print(c)
-# num()
-# print(c['current']['temp_c'])
-# print(c['current']['temp_f'])
     
+
 
 
