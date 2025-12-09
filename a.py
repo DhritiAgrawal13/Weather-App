@@ -1,7 +1,10 @@
 import requests
 import pyfiglet
 import os
+import json
 from colorama import Fore
+import datetime
+
 class pattern:
     def weather_app(self,autoreset=True):
         b=pyfiglet.figlet_format('Weather App')
@@ -21,8 +24,9 @@ try:
     os.system('cls')
     c.weather_app()
     y=b.json()
+    z={'Date':datetime.datetime.today().isoformat(),'city':y['location']['name'],'Temperature in Celcius':y['current']['temp_c'],'Temperature in Fahrenheit':y['current']['temp_f'],'Humidity':y['current']['humidity']}
     with open('data.json','w') as fs:
-        fs.write(f"{b.json()}")
+        json.dump(z,fs,indent=4)
     print(f"name of the city:-{y['location']['name']}")
     print(f"Temperature in Celcius:- {y['current']['temp_c']}")
     print(f"Temperature in Fahrenheit:- {y['current']['temp_f']}")
@@ -31,8 +35,3 @@ except requests.exceptions.ConnectionError as e:
     print("no internet connection are available please connect to the internet after run this code ")
 except Exception as e:
     print(e)
-        
-    
-
-
-
